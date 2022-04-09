@@ -2,21 +2,12 @@ import React, { useState } from "react";
 import styled from "styled-components";
 import { getCookie, deleteCookie } from "../shared/Cookie";
 
+import { useSelector } from "react-redux";
+
 // page
 
 const Main = (props) => {
-  const [is_login, setIsLogin] = useState(false);
-
-  React.useEffect(() => {
-    let cookie = getCookie("userid");
-    console.log(cookie);
-
-    if (cookie) {
-      setIsLogin(true);
-    } else {
-      setIsLogin(false);
-    }
-  });
+  const is_login = useSelector((state) => state.user.is_login);
 
   if (is_login) {
     return <StMain>Main</StMain>;
