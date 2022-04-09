@@ -5,9 +5,9 @@ import { getCookie, setCookie, deleteCookie } from "../shared/Cookie";
 import { Grid, Button, Input } from "../elements";
 
 const Login = () => {
-  console.log(getCookie("userid"));
+  console.log(getCookie("password"));
   const login = () => {
-    setCookie("userid", "sangwon", 3);
+    setCookie("userId", "sangwon", 3);
     setCookie("password", "1242", 3);
   };
   const history = useHistory();

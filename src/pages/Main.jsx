@@ -1,8 +1,26 @@
-import React from "react";
+import React, { useState } from "react";
 import styled from "styled-components";
+import { getCookie, deleteCookie } from "../shared/Cookie";
 
-const Main = () => {
-  return <StMain>Main</StMain>;
+// page
+
+const Main = (props) => {
+  const [is_login, setIsLogin] = useState(false);
+
+  React.useEffect(() => {
+    let cookie = getCookie("userid");
+    console.log(cookie);
+
+    if (cookie) {
+      setIsLogin(true);
+    } else {
+      setIsLogin(false);
+    }
+  });
+
+  if (is_login) {
+    return <StMain>Main</StMain>;
+  }
 };
 
 export default Main;
