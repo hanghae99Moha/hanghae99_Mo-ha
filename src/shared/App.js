@@ -14,7 +14,6 @@ import Category from "../pages/Category";
 import Detail from "../pages/Detail";
 import Mypost from "../pages/Mypost";
 import Post from "../pages/Post";
-import Signup from "../pages/Signup";
 import Update from "../pages/Update";
 
 function App() {
@@ -25,16 +24,16 @@ function App() {
           <Route path="/" exact>
             <Login />
           </Route>
-          <Route path="/main" exact component={Main}>
-            <Sidebar />
+          <Sidebar />
+          <Grid width="100%" border="1px solid red">
             <Header />
-          </Route>
-          <Route path="/category" exact component={Category} />
-          <Route path="/detail" exact component={Detail} />
-          <Route path="/mypost" exact component={Mypost} />
-          <Route path="/post" exact component={Post} />
-          <Route path="/signup" exact component={Signup} />
-          <Route path="/update" exact component={Update} />
+            <Route path="/main" exact component={Main}></Route>
+            <Route path="/category" exact component={Category} />
+            <Route path="/detail" exact component={Detail} />
+            <Route path="/mypost" exact component={Mypost} />
+            <Route path="/post" exact component={Post} />
+            <Route path="/update" exact component={Update} />
+          </Grid>
         </BrowserRouter>
       </Grid>
     </div>
