@@ -15,25 +15,28 @@ import Detail from "../pages/Detail";
 import Mypost from "../pages/Mypost";
 import Post from "../pages/Post";
 import Update from "../pages/Update";
+import { Switch } from "react-router-dom";
 
 function App() {
   return (
     <div className="App">
       <Grid is_flex>
         <BrowserRouter>
-          <Route path="/" exact>
-            <Login />
-          </Route>
-          <Sidebar />
-          <Grid width="100%" border="1px solid red">
-            <Header />
-            <Route path="/main" exact component={Main}></Route>
-            <Route path="/category" exact component={Category} />
-            <Route path="/detail" exact component={Detail} />
-            <Route path="/mypost" exact component={Mypost} />
-            <Route path="/post" exact component={Post} />
-            <Route path="/update" exact component={Update} />
-          </Grid>
+          <Switch>
+            <Route path="/" exact component={Login}></Route>
+            <Grid is_flex width="100%">
+              <Sidebar />
+              <Grid width="100%" vh="100vh" margin="0 0 0 350px">
+                <Header />
+                <Route path="/main" exact component={Main}></Route>
+                <Route path="/category" exact component={Category} />
+                <Route path="/detail" exact component={Detail} />
+                <Route path="/mypost" exact component={Mypost} />
+                <Route path="/post" exact component={Post} />
+                <Route path="/update" exact component={Update} />
+              </Grid>
+            </Grid>
+          </Switch>
         </BrowserRouter>
       </Grid>
     </div>
