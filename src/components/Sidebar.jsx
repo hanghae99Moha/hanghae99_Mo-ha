@@ -15,7 +15,7 @@ import { BsPencil, BsFileEarmarkPost } from "react-icons/bs";
 import { GoHome } from "react-icons/go";
 
 const Sidebar = () => {
-  const [nickname, setNicname] = useState({
+  const [nickname, setNickname] = useState({
     nickname: "르탄이",
   });
 

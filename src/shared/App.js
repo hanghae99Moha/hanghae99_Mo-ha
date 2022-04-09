@@ -15,7 +15,6 @@ import Detail from "../pages/Detail";
 import Mypost from "../pages/Mypost";
 import Post from "../pages/Post";
 import Update from "../pages/Update";
-import { Switch } from "react-router-dom";
 
 function App() {
   return (
