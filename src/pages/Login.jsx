@@ -4,13 +4,15 @@ import styled from "styled-components";
 import { getCookie, setCookie, deleteCookie } from "../shared/Cookie";
 import { Grid, Button, Input } from "../elements";
 
+import { useDispatch } from "react-redux";
+import { actionCreators as userActions } from "../redux/modules/user";
+
 const Login = () => {
-  console.log(getCookie("password"));
-  const login = () => {
-    setCookie("userId", "sangwon", 3);
-    setCookie("password", "1242", 3);
-  };
   const history = useHistory();
+  const dispatch = useDispatch();
+  const login = () => {
+    dispatch(userActions.loginAction({ userId: "sangwon" }));
+  };
 
   return (
     <Contain>

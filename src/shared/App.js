@@ -2,6 +2,8 @@ import React from "react";
 import { Grid } from "../elements";
 import { Route } from "react-router-dom";
 import { BrowserRouter, Switch } from "react-router-dom";
+import { ConnectedRouter } from "connected-react-router";
+import { history } from "../redux/configureStore";
 
 // components
 import Header from "../components/Header.jsx";
@@ -20,7 +22,7 @@ function App() {
   return (
     <div className="App">
       <Grid is_flex>
-        <BrowserRouter>
+        <ConnectedRouter history={history}>
           <Switch>
             <Route path="/" exact component={Login}></Route>
             <Grid is_flex width="100%">
@@ -36,7 +38,7 @@ function App() {
               </Grid>
             </Grid>
           </Switch>
-        </BrowserRouter>
+        </ConnectedRouter>
       </Grid>
     </div>
   );

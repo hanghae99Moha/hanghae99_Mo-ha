@@ -1,7 +1,7 @@
-import React from "react";
 import styled from "styled-components";
-
-import { useState, useEffect } from "react";
+import React, { useState, useEffect } from "react";
+import { useDispatch } from "react-redux";
+import { actionCreators as userActions } from "../redux/modules/user";
 
 // Logo
 import LogoImg from "../assets/Logo.png";
@@ -15,9 +15,13 @@ import { BsPencil, BsFileEarmarkPost } from "react-icons/bs";
 import { GoHome } from "react-icons/go";
 
 const Sidebar = () => {
+  const dispatch = useDispatch();
   const [nickname, setNickname] = useState({
     nickname: "르탄이",
   });
+  const logout = () => {
+    dispatch(userActions.logoutAction({ userId: "null" }));
+  };
 
   return (
     <React.Fragment>
@@ -26,7 +30,14 @@ const Sidebar = () => {
         <Grid>
           <Top>
             <Logo />
-            <Button>로그아웃</Button>
+            <Button
+              onClick={() => {
+                dispatch(userActions.logOut({}));
+                logout();
+              }}
+            >
+              로그아웃
+            </Button>
           </Top>
         </Grid>
         <Grid>
