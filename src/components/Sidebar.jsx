@@ -20,7 +20,7 @@ const Sidebar = () => {
     nickname: "르탄이",
   });
   const logout = () => {
-    dispatch(userActions.logoutAction({ userId: "null" }));
+    dispatch(userActions.logoutAction({ userId: "" }));
   };
 
   return (

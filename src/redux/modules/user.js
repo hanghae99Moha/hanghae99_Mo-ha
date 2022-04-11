@@ -13,24 +13,51 @@ const logOut = createAction(LOG_OUT, (user) => ({ user }));
 const getUser = createAction(GET_USER, (user) => ({ user }));
 
 // initialState
-const initialState = {
-  user: null,
-  is_login: false,
-};
+const initialState = {};
 
 // middleware actions
-const loginAction = (user) => {
+const loginAction = (userId, password) => {
   return function (dispatch, getState, { history }) {
-    console.log(history);
-    dispatch(logIn(user));
+    const data = {
+      userId: userId,
+      password: password,
+    };
+    dispatch(logIn(data.userId));
     history.push("/main");
   };
 };
-const logoutAction = (user) => {
+const logoutAction = (userId) => {
   return function (dispatch, getState, { history }) {
     console.log(history);
-    dispatch(logOut(user));
+    dispatch(logOut(userId));
     history.replace("/");
+  };
+
+  //   await api.post('/api/login', data)
+  //   .then((response) => {
+  //       console.log(response);
+  //       if (response.data.token) {
+  //           localStorage.setItem('token', response.data.token);
+  //           localStorage.setItem('name', response.data.loginId);
+  //           dispatch(login(response.data.name))
+  //           // history.push('/')
+  //           window.location.replace("/")
+
+  //           console.log("로그인이 되었어요")
+  //       }
+  //   })
+  //   .catch((err) => {
+  //      console.log(err);
+  //      window.alert("아이디와 비밀번호가 일치하지 않습니다.")
+  // })
+};
+
+const signupAction = (userId, password) => {
+  return function (dispatch, getState, { history }) {
+    const userInfo = {
+      userId: userId,
+      password: password,
+    };
   };
 };
 
@@ -40,13 +67,14 @@ export default handleActions(
     [LOG_IN]: (state, action) =>
       produce(state, (draft) => {
         setCookie("is_login", "success");
-        draft.user = action.payload.user;
+        draft.userId = action.payload.userId;
+        console.log(action);
         draft.is_login = true;
       }),
     [LOG_OUT]: (state, action) =>
       produce(state, (draft) => {
         deleteCookie("is_login");
-        draft.user = null;
+        draft.userId = null;
         draft.is_login = false;
       }),
     [GET_USER]: (state, action) => produce(state, (draft) => {}),
@@ -61,6 +89,7 @@ const actionCreators = {
   getUser,
   loginAction,
   logoutAction,
+  signupAction,
 };
 
 export { actionCreators };

@@ -17,6 +17,7 @@ import Detail from "../pages/Detail";
 import Mypost from "../pages/Mypost";
 import Post from "../pages/Post";
 import Update from "../pages/Update";
+import Signup from "../pages/Signup";
 
 function App() {
   return (
@@ -25,6 +26,7 @@ function App() {
         <ConnectedRouter history={history}>
           <Switch>
             <Route path="/" exact component={Login}></Route>
+            <Route path="/signup" exact component={Signup} />
             <Grid is_flex width="100%">
               <Sidebar />
               <Grid width="100%" vh="100vh" margin="0 0 0 350px">
