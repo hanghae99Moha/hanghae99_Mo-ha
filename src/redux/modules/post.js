@@ -1,6 +1,6 @@
 import { createAction, handleActions } from "redux-actions";
 import { produce } from "immer";
-import axios from "axios";
+import api from "../../api/api";
 
 // action
 const GET_POST = "GET_POST";
@@ -15,8 +15,16 @@ const initialState = {
 
 // middleware
 const getPostMD = () => {
-  return function (dispatch, getState, { history }) {
-    const data = axios.get();
+  return async function (dispatch, getState, { history }) {
+    // const token = localStorage.getItem('token');
+    try {
+      const { data } = await api.get("/posts");
+      // console.log(data);
+      dispatch(getPost(data));
+    } catch (error) {
+      alert("데이터를 불러오지 못했습니다");
+      // console.log(error);
+    }
   };
 };
 
@@ -25,7 +33,10 @@ export default handleActions(
   {
     [GET_POST]: (state, action) =>
       produce(state, (draft) => {
+        // console.log(state);
+        // console.log(action);
         draft.list = action.payload.post_list;
+        // console.log(draft.list);
       }),
   },
   initialState

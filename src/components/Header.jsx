@@ -39,6 +39,7 @@ const HeaderWrap = styled.div`
   position: sticky;
   background-color: #fff;
   top: 0;
+  z-index: 999;
 `;
 
 const Logo = styled.div`
@@ -55,7 +56,7 @@ const Cat = styled.div``;
 const StBtn = styled.button`
   margin: 20px 10px;
   border: 2px solid transparent;
-  background-color: transparent;
+  background-color: #fff;
   width: 50px;
   color: #aaa;
   box-sizing: border-box;
