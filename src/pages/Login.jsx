@@ -8,26 +8,22 @@ import { actionCreators as userActions } from "../redux/modules/user";
 import { useHistory } from "react-router-dom/cjs/react-router-dom.min";
 import { getCookie, setCookie, deleteCookie } from "../shared/Cookie";
 
-const Login = () => {
+const Login = (props) => {
   const history = useHistory();
   const dispatch = useDispatch();
-  const [id, setId] = React.useState("");
+  const [userId, setId] = React.useState("");
   const [password, setPassword] = React.useState("");
 
-  const handleIdInput = (e) => {
-    setId(e.target.value);
-  };
-  const handlePaswordInput = (e) => {
-    setPassword(e.target.value);
-  };
+  // const handleIdInput = (e) => {};
+  // const handlePaswordInput = (e) => {
+  //   setPassword(e.target.value);
+  // };
   const handlelogin = () => {
-    if (id === "" || password === "") {
+    if (userId === "" || password === "") {
       window.alert("아이디 혹은 비밀번호가 입력되지 않았습니다.");
       return;
     }
-  };
-  const login = () => {
-    dispatch(userActions.loginAction({ user: "sangwon" }));
+    dispatch(userActions.loginAction(userId, password));
   };
 
   return (
@@ -36,11 +32,19 @@ const Login = () => {
         <Namebox>
           <Logo />
         </Namebox>
-        <Stinput placeholder="아이디" type="text" onChange={handleIdInput} />
+        <Stinput
+          placeholder="아이디"
+          type="text"
+          onChange={(e) => {
+            setId(e.target.value);
+          }}
+        />
         <Stinput
           placeholder="비밀번호"
           type="password"
-          onChange={handlePaswordInput}
+          onChange={(e) => {
+            setPassword(e.target.value);
+          }}
         />
         <StBtnIcon>
           <StBtn
