@@ -1,6 +1,5 @@
-import React, { useState } from "react";
+import React from "react";
 import styled from "styled-components";
-import { getCookie, deleteCookie } from "../shared/Cookie";
 
 import { useSelector } from "react-redux";
 
