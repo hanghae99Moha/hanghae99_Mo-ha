@@ -35,4 +35,5 @@ const StGrid = styled.div`
       : ""};
   ${(props) => (props.fd ? `flex-direction: ${props.fd};` : "")};
   ${(props) => (props.vh ? `height: ${props.vh};` : "")}
+  ${(props) => (props.center ? `text-align: center` : "")}
 `;
