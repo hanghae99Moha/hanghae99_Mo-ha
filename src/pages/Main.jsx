@@ -3,6 +3,10 @@ import styled from "styled-components";
 
 import { useSelector } from "react-redux";
 
+// components
+import Postlist from "../components/Postlist";
+import ResponsiveSlider from "../components/Slider";
+
 // page
 
 const Main = (props) => {
@@ -11,6 +15,12 @@ const Main = (props) => {
   if (is_login) {
     return <StMain>Main</StMain>;
   }
+  return (
+    <StMain>
+      <ResponsiveSlider />
+      <Postlist />
+    </StMain>
+  );
 };
 
 export default Main;

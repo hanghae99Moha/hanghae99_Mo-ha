@@ -9,12 +9,63 @@ import Postbox from "../components/Postbox";
 
 // elements
 import { Button, Grid, Text, Input, Image } from "../elements";
+import api from "../api/api";
 
 const Post = (props) => {
   const is_login = useSelector((state) => state.user.is_login);
   const { history } = props;
 
   const [contents, setContents] = React.useState("");
+
+  // 이미지 업로드
+  const [imgBase64, setImgBase64] = React.useState([]); // 파일 base64
+  const [imgFile, setImgFile] = React.useState(null); //파일
+
+  const handleChangeFile = (event) => {
+    console.log(event.target.files);
+    setImgFile(event.target.files);
+    setImgBase64([]);
+    for (var i = 0; i < event.target.files.length; i++) {
+      if (event.target.files[i]) {
+        let reader = new FileReader();
+        reader.readAsDataURL(event.target.files[i]); // 1. 파일을 읽어 버퍼에 저장
+        // 파일 상태 업데이트
+        reader.onloadend = () => {
+          // 2. 읽기가 완료되면 아래코드 실행
+          const base64 = reader.result;
+          console.log(base64);
+          if (base64) {
+            var base64Sub = base64.toString();
+
+            setImgBase64((imgBase64) => [...imgBase64, base64Sub]);
+          }
+        };
+      }
+    }
+  };
+
+  const WriteBoard = async () => {
+    const fd = new FormData();
+    Object.values(imgFile).forEach((file) => fd.append("file", file));
+
+    // fd.append("comment", comment);
+
+    await api
+      .post("/posts", fd, {
+        headers: {
+          "Content-Type": `multipart/form-data; `,
+        },
+      })
+      .then((response) => {
+        if (response.data) {
+          console.log(response.data);
+          history.push("/test1");
+        }
+      })
+      .catch((error) => {
+        // 예외 처리
+      });
+  };
 
   const changeContents = (e) => {
     setContents(e.target.value);
@@ -48,13 +99,30 @@ const Post = (props) => {
 
           <Grid>
             <Grid padding="16px">
+              <input
+                type="file"
+                id="file"
+                onChange={handleChangeFile}
+                multiple="multiple"
+              />
               <Text margin="0" size="24px" bold>
                 이미지
               </Text>
             </Grid>
           </Grid>
 
-          <Image src={"http://via.placeholder.com/400x300"} />
+          {imgBase64.map((item) => {
+            return (
+              <img
+                className="d-block w-100"
+                src={item}
+                alt="First slide"
+                style={{ width: "100%", height: "550px" }}
+                key="item"
+              />
+            );
+          })}
+          {/* <Image src={"http://via.placeholder.com/400x300"} /> */}
 
           <Grid padding="16px">
             <Stselect>
@@ -87,7 +155,7 @@ const Post = (props) => {
           </Grid>
 
           <Grid padding="16px">
-            <Button text="게시글 작성" _onClick={() => {}}>
+            <Button text="게시글 작성" _onClick={WriteBoard}>
               게시글작성
             </Button>
           </Grid>
