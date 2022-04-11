@@ -1,7 +1,8 @@
+import axios from "axios";
 import React from "react";
 
-const apis = () => {
-  return <div>api</div>;
-};
+const api = axios.create({
+  baseURL: "http://13.125.73.243/",
+});
 
-export default apis;
+export default api;

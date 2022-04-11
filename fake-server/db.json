@@ -1,0 +1,19 @@
+{
+  "posts": [
+    {
+      "userId": "hansangwon1",
+      "password": "12421242",
+      "nickname": "맘스터치"
+    },
+    {
+      "userId": "hansangwon2",
+      "password": "1242112421",
+      "nickname": "닭강정"
+    },
+    {
+      "userId": "hansangwon3",
+      "password": "124210124210",
+      "nickname": "컴포즈커피"
+    }
+  ]
+}
