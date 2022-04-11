@@ -4,8 +4,6 @@ import axios from "axios";
 
 // action
 const GET_POST = "GET_POST";
-const GET_POST_SUCCESS = "GET_POST_SUCCESS";
-const GET_POST_ERROR = "GET_POST_ERROR";
 
 // action creators
 const getPost = createAction(GET_POST, (post_list) => ({ post_list }));

@@ -4,7 +4,7 @@ import { GlobalStyle } from "./index";
 
 const Button = ({ children, ...props }) => {
   return (
-    <StBtn {...props}>
+    <StBtn onClick={props._onClick} {...props}>
       <GlobalStyle />
       {children}
     </StBtn>

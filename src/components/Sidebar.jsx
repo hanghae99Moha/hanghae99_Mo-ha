@@ -2,6 +2,7 @@ import styled from "styled-components";
 import React, { useState, useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { actionCreators as userActions } from "../redux/modules/user";
+import { useHistory } from "react-router-dom/cjs/react-router-dom.min";
 
 // Logo
 import LogoImg from "../assets/Logo.png";
@@ -15,6 +16,7 @@ import { BsPencil, BsFileEarmarkPost } from "react-icons/bs";
 import { GoHome } from "react-icons/go";
 
 const Sidebar = () => {
+  const history = useHistory();
   const dispatch = useDispatch();
   const [nickname, setNickname] = useState({
     nickname: "르탄이",
@@ -29,7 +31,11 @@ const Sidebar = () => {
       <SidebarPosition>
         <Grid>
           <Top>
-            <Logo />
+            <Logo
+              onClick={() => {
+                history.push("/main");
+              }}
+            />
             <Button
               onClick={() => {
                 dispatch(userActions.logOut({}));
@@ -52,19 +58,25 @@ const Sidebar = () => {
               style={{
                 cursor: "pointer",
               }}
-              onClick={() => {}}
+              onClick={() => {
+                history.push("/post");
+              }}
             />
             <BsFileEarmarkPost
               style={{
                 cursor: "pointer",
               }}
-              onClick={() => {}}
+              onClick={() => {
+                history.push("/mypost");
+              }}
             />
             <GoHome
               style={{
                 cursor: "pointer",
               }}
-              onClick={() => {}}
+              onClick={() => {
+                history.push("/");
+              }}
             />
           </Bottom>
         </Grid>
