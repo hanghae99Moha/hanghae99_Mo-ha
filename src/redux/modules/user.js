@@ -30,7 +30,7 @@ const loginAction = (userId, password) => {
     };
     console.log(data);
     await api
-      .post("/8081/api/login", data)
+      .post("/api/login", data)
       .then((response) => {
         console.log(response);
         if (response.data.token) {
@@ -58,7 +58,7 @@ const signupAction = (userId, password) => {
     };
     console.log("회원가입하는중");
     await api
-      .post("/8081/api/signup", userInfo)
+      .post("/api/signup", userInfo)
       .then(function (response) {
         console.log(response);
         history.push("/login");

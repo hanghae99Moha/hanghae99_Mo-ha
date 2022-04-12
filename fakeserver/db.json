@@ -1,0 +1,67 @@
+{
+  "posts": [
+    {
+      "postId": "0",
+      "title": "제주도 호텔 추천1",
+      "desc": "동해물과 백두산이 마르고 닳도록 하나님이 보우하사 우리 나라만세 무궁화 삼천리 화려강산 대한사람 대한으로 길이 보전하세, 동해물과 백두산이 마르고 닳도록 하나님이 보우하사 우리 나라만세 무궁화 삼천리 화려강산 대한사람 대한으로 길이 보전하세, 동해물과 백두산이 마르고 닳도록 하나님이 보우하사 우리 나라만세 무궁화 삼천리 화려강산 대한사람 대한으로 길이 보전하세",
+      "imageUrl": "https://a.cdn-hotels.com/gdcs/production124/d1111/6d3c8e14-3940-44cf-b910-7b12d1f1c5d3.jpg",
+      "category": "제주"
+    },
+    {
+      "postId": "1",
+      "title": "서울 호텔 추천2",
+      "desc": "서울 호텔중 단연 최고",
+      "imageUrl": "https://d2xf5gjipzd8cd.cloudfront.net/available/539475521/539475521_WxH.jpg",
+      "category": "서울"
+    },
+    {
+      "postId": "2",
+      "title": "경기도 호텔 추천3",
+      "desc": "럭셔리 끄파낭",
+      "imageUrl": "https://travelblog.expedia.co.kr/wp-content/uploads/2017/04/161.jpg",
+      "category": "경기"
+    },
+    {
+      "postId": "3",
+      "title": "제주도 호텔 추천4",
+      "desc": "사용해본 결과 정말로 깔끔했어요 넘모 조아요",
+      "imageUrl": "https://a.cdn-hotels.com/gdcs/production124/d1111/6d3c8e14-3940-44cf-b910-7b12d1f1c5d3.jpg",
+      "category": "제주"
+    },
+    {
+      "postId": "4",
+      "title": "서울 호텔 추천5",
+      "desc": "서울 호텔중 단연 최고",
+      "imageUrl": "https://d2xf5gjipzd8cd.cloudfront.net/available/539475521/539475521_WxH.jpg",
+      "category": "서울"
+    },
+    {
+      "postId": "5",
+      "title": "경기도 호텔 추천6",
+      "desc": "럭셔리 끄파낭",
+      "imageUrl": "https://travelblog.expedia.co.kr/wp-content/uploads/2017/04/161.jpg",
+      "category": "경기"
+    },
+    {
+      "postId": "6",
+      "title": "제주도 호텔 추천7",
+      "desc": "사용해본 결과 정말로 깔끔했어요 넘모 조아요",
+      "imageUrl": "https://a.cdn-hotels.com/gdcs/production124/d1111/6d3c8e14-3940-44cf-b910-7b12d1f1c5d3.jpg",
+      "category": "제주"
+    },
+    {
+      "postId": "7",
+      "title": "서울 호텔 추천8",
+      "desc": "서울 호텔중 단연 최고",
+      "imageUrl": "https://d2xf5gjipzd8cd.cloudfront.net/available/539475521/539475521_WxH.jpg",
+      "category": "서울"
+    },
+    {
+      "postId": "8",
+      "title": "경기도 호텔 추천9",
+      "desc": "럭셔리 끄파낭",
+      "imageUrl": "https://travelblog.expedia.co.kr/wp-content/uploads/2017/04/161.jpg",
+      "category": "경기"
+    }
+  ]
+}

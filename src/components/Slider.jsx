@@ -8,10 +8,8 @@ import { Image } from "../elements";
 
 const ResponsiveSlider = () => {
   const Post_list = useSelector((state) => state.post.list);
-  console.log(Post_list);
 
   const Post_list_image = Post_list.map((cur) => cur.imageUrl);
-  console.log(Post_list_image);
 
   let arrImage = [];
   for (let i = 0; i < 6; i++) {
@@ -23,7 +21,6 @@ const ResponsiveSlider = () => {
       i--;
     }
   }
-  console.log(arrImage);
 
   const settings = {
     dots: true,

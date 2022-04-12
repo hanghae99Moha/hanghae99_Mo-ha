@@ -1,13 +1,10 @@
 import React from "react";
 import styled from "styled-components";
-
 import { useSelector } from "react-redux";
 
 // components
 import Postlist from "../components/Postlist";
 import ResponsiveSlider from "../components/Slider";
-
-// page
 
 const Main = (props) => {
   const is_login = useSelector((state) => state.user.is_login);
