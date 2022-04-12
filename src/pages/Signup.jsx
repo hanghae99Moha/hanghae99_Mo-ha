@@ -11,12 +11,12 @@ const Signup = (props) => {
   const [values, setValues] = useState({
     userId: "",
     password: "",
-    // nickname: "",
+    nickname: "",
   });
   const [valid, setValid] = useState(false);
   const [submitted, setSubmitted] = useState(false);
 
-  // const specialLetter = values.loginId.search(/[`~!@@#$%^&*|₩₩₩'₩";:₩/?]/gi);
+  const specialLetter = values.userId.search(/[`~!@@#$%^&*|₩₩₩'₩";:₩/?]/gi);
 
   const Idhandle = (e) => {
     setValues({ ...values, userId: e.target.value });
@@ -24,19 +24,23 @@ const Signup = (props) => {
   const Pwhandle = (e) => {
     setValues({ ...values, password: e.target.value });
   };
-  // const Nicknamehandle = (e) => {
-  //   setValues({ ...values, nickname: e.target.value });
-  // };
+  const Nicknamehandle = (e) => {
+    setValues({ ...values, nickname: e.target.value });
+  };
 
   const handleSpecialLetter = (e) => {
     setValues({ ...values, specialLetter: e.target.value });
   };
   const Submithandle = (e) => {
     // e.preventDefault();
-    if (values.userId && values.password) {
+    if (values.userId && values.password && values.nickname) {
       setValid(true);
     }
-    if (values.userId === "" || values.password === "") {
+    if (
+      values.userId === "" ||
+      values.password === "" ||
+      values.nickname === ""
+    ) {
       window.alert("아이디, 패스워드, 닉네임을 모두 입력해주세요!!😊");
       return;
     }
@@ -45,7 +49,9 @@ const Signup = (props) => {
       return;
     }
     setSubmitted(true);
-    dispatch(userActions.signupAction(values.userId, values.password));
+    dispatch(
+      userActions.signupAction(values.userId, values.password, values.nickname)
+    );
   };
 
   return (
@@ -63,9 +69,9 @@ const Signup = (props) => {
           />
           <StButton onChange={Submithandle}>중복 확인</StButton>
         </Stid>
-        <Stinput placeholder="닉네임" />
+        <Stinput placeholder="닉네임" onChange={Nicknamehandle} />
         <Stinput placeholder="비밀번호" type="Password" onChange={Pwhandle} />
-        <Stinput placeholder="비밀번호 확인" type="Password" />
+        {/* <Stinput placeholder="비밀번호 확인" type="Password" /> */}
       </StinputBox>
       <Stsublogin type="submit" onClick={Submithandle}>
         회원 가입
