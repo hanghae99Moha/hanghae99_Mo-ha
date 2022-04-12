@@ -3,19 +3,19 @@ import styled from "styled-components";
 
 // redux
 import { useDispatch, useSelector } from "react-redux";
-import { history } from "../redux/configureStore";
 import { actionCreators } from "../redux/modules/post";
 
 import Card from "./Card";
 
-const Postlist = () => {
+const Postlist = (props) => {
   const post_list = useSelector((state) => state.post.list);
-  // console.log(post_list);
+
   const dispatch = useDispatch();
 
   React.useEffect(() => {
     dispatch(actionCreators.getPostMD());
   }, []);
+
   return (
     <PostlistWrap>
       <PostlistCardsBox>
@@ -38,5 +38,5 @@ const PostlistWrap = styled.div`
 const PostlistCardsBox = styled.div`
   max-width: 800px;
   margin: 40px auto;
-  pading-bottom: 20px;
+  padding-bottom: 20px;
 `;

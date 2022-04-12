@@ -1,17 +1,22 @@
 import React from "react";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import styled from "styled-components";
-
+import { actionCreators } from "../redux/modules/post";
+import { history } from "../redux/configureStore";
 import post from "../redux/modules/post";
 import { Image } from "../elements";
 
 const Card = (props) => {
+  const dispatch = useDispatch();
   const Post_list = useSelector((state) => state.post.list);
   const index = props.idx;
-  console.log(index);
 
   return (
-    <CardsWrap>
+    <CardsWrap
+      onClick={() => {
+        history.push(`/detail/${props.postId}`);
+      }}
+    >
       <CardsImg>
         <Image src={Post_list[index].imageUrl}></Image>
       </CardsImg>
