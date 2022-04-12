@@ -33,9 +33,10 @@ function App() {
                 <Header />
                 <Route path="/main" exact component={Main}></Route>
                 <Route path="/category" exact component={Category} />
-                <Route path="/detail" exact component={Detail} />
+                <Route path="/detail/:id" exact component={Detail} />
                 <Route path="/mypost" exact component={Mypost} />
-                <Route path="/post" exact component={Post} />
+                <Route path="/post/" exact component={Post} />
+                <Route path="/post/:id" exact component={Post} />
                 <Route path="/update" exact component={Update} />
               </Grid>
             </Grid>

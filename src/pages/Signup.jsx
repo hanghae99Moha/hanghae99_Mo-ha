@@ -16,7 +16,7 @@ const Signup = (props) => {
   const [valid, setValid] = useState(false);
   const [submitted, setSubmitted] = useState(false);
 
-  // const specialLetter = values.loginId.search(/[`~!@@#$%^&*|₩₩₩'₩";:₩/?]/gi);
+  const specialLetter = values.userId.search(/[`~!@@#$%^&*|₩₩₩'₩";:₩/?]/gi);
 
   const Idhandle = (e) => {
     setValues({ ...values, userId: e.target.value });
@@ -32,7 +32,7 @@ const Signup = (props) => {
     setValues({ ...values, specialLetter: e.target.value });
   };
   const Submithandle = (e) => {
-    e.preventDefault();
+    // e.preventDefault();
     if (values.userId && values.password && values.nickname) {
       setValid(true);
     }
@@ -50,7 +50,7 @@ const Signup = (props) => {
     }
     setSubmitted(true);
     dispatch(
-      userActions.signup(values.userId, values.password, values.nickname)
+      userActions.signupAction(values.userId, values.password, values.nickname)
     );
   };
 
@@ -71,9 +71,11 @@ const Signup = (props) => {
         </Stid>
         <Stinput placeholder="닉네임" onChange={Nicknamehandle} />
         <Stinput placeholder="비밀번호" type="Password" onChange={Pwhandle} />
-        <Stinput placeholder="비밀번호 확인" onChange={Submithandle} />
+        {/* <Stinput placeholder="비밀번호 확인" type="Password" /> */}
       </StinputBox>
-      <Stsublogin type="submit">회원 가입</Stsublogin>
+      <Stsublogin type="submit" onClick={Submithandle}>
+        회원 가입
+      </Stsublogin>
     </Contain>
   );
 };

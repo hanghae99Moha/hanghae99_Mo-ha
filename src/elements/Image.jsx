@@ -2,11 +2,12 @@ import styled from "styled-components";
 import React from "react";
 
 const Image = (props) => {
-  const { shape, src, size } = props;
+  const { shape, src, size, backgroundSize } = props;
 
   const styles = {
     src: src,
     size: size,
+    backgroundSize,
   };
 
   if (shape === "rectangle") {
@@ -23,6 +24,7 @@ Image.defaultProps = {
   shape: "rectangle",
   src: "http://via.placeholder.com/400x300",
   size: 36,
+  backgroundSize: "cover",
 };
 
 const AspectOutter = styled.div`
