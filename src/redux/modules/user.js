@@ -1,9 +1,9 @@
 import { createAction, handleActions } from "redux-actions";
 import { produce } from "immer";
-import { getCookie, setCookie, deleteCookie } from "../../shared/Cookie";
 
 import api from "../../api/api";
 import { getToken, setToken, delToken } from "../../shared/token";
+import axios from "axios";
 
 // ACTIONS
 const LOG_IN = "LOG_IN";
@@ -31,19 +31,48 @@ const loginAction = (userId, password) => {
     };
     console.log(data);
     api
-      .post("api/login", data)
+      .post("/api/login", data)
       .then((response) => {
-        console.log(response);
-        localStorage.setItem("name", response.data.email); // email => userId로 변경 ( api 명세서 )
-        localStorage.setItem("token", response.data.token);
-        dispatch(logIn(response.data.userId));
-        history.replace("/main");
+        if (response.data.token) {
+          console.log(response);
+          localStorage.setItem("name", response.data.userId); // email => userId로 변경 ( api 명세서 )
+          localStorage.setItem("token", response.data.token);
+          dispatch(logIn(response.data.userId));
+          localStorage.setItem("nickname", response.data.nickname);
+          history.replace("/main");
 
-        console.log("로그인이 되었어요");
+          console.log("로그인이 되었어요");
+          window.alert("로그인 성공!!😊");
+        } else {
+          window.alert("아이디 비밀번호를 확인해 주세요!!😲");
+        }
       })
       .catch((err) => {
         console.log(err);
         window.alert("아이디와 비밀번호가 일치하지 않습니다.");
+      });
+  };
+};
+
+const loginCheckFB = () => {
+  return function (dispatch, getState, { history }) {
+    console.log("로그인여부 확인");
+
+    const token = localStorage.getItem("user_token");
+    api
+      .get("/api/idlogin", {
+        headers: { Authorization: token },
+      })
+      .then((response) => {
+        console.log(response);
+        const is_login = true;
+        const userId = response.data.userInfo.userId;
+        localStorage.setItem("userId", userId);
+
+        dispatch(logIn(is_login, userId));
+      })
+      .catch((err) => {
+        console.log("로그인 여부 확인 실패", err);
       });
   };
 };
@@ -56,8 +85,9 @@ const signupAction = (userId, password, nickname) => {
       nickname: nickname,
     };
     console.log("회원가입하는중");
+    window.alert("회원가입이 되었습니다. 환영합니다.!!");
     await api
-      .post("api/signup", userInfo)
+      .post("/api/signup", userInfo)
       .then(function (response) {
         console.log(response);
         history.push("/");
@@ -73,16 +103,17 @@ export default handleActions(
   {
     [LOG_IN]: (state, action) =>
       produce(state, (draft) => {
-        setCookie("is_login", "success");
         draft.userId = action.payload.userId;
         console.log(action);
         draft.is_login = true;
       }),
     [LOG_OUT]: (state, action) =>
       produce(state, (draft) => {
-        deleteCookie("is_login");
-        draft.userId = null;
-        draft.is_login = false;
+        localStorage.removeItem("name");
+        localStorage.removeItem("token");
+        localStorage.removeItem("nickname");
+        window.location.replace("/");
+        console.log("로그아웃 합니다.");
       }),
     [GET_USER]: (state, action) => produce(state, (draft) => {}),
   },
@@ -94,6 +125,7 @@ const actionCreators = {
   logIn,
   logOut,
   getUser,
+  loginCheckFB,
   loginAction,
   signupAction,
 };

@@ -75,7 +75,7 @@ const Sidebar = () => {
                 cursor: "pointer",
               }}
               onClick={() => {
-                history.push("/");
+                history.push("/main");
               }}
             />
           </Bottom>
