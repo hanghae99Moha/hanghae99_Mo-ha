@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import styled from "styled-components";
 import { actionCreators } from "../redux/modules/post";
@@ -6,24 +6,20 @@ import { history } from "../redux/configureStore";
 import post from "../redux/modules/post";
 import { Image } from "../elements";
 
-const Card = (props) => {
+const Card = ({ _onClick = onclick, ...props }) => {
   const dispatch = useDispatch();
   const Post_list = useSelector((state) => state.post.list);
   const index = props.idx;
 
   return (
-    <CardsWrap
-      onClick={() => {
-        history.push(`/detail/${props.postId}`);
-      }}
-    >
+    <CardsWrap onClick={_onClick}>
       <CardsImg>
         <Image src={Post_list[index].imageUrl}></Image>
       </CardsImg>
       <CardsInfo>
         <CardsInfoCat>{props.category}</CardsInfoCat>
         <CardsInfoTitle>{props.title}</CardsInfoTitle>
-        <CardsInfoDesc>{props.desc}</CardsInfoDesc>
+        <CardsInfoDesc>{props.contents}</CardsInfoDesc>
       </CardsInfo>
     </CardsWrap>
   );
@@ -72,6 +68,9 @@ const CardsInfoDesc = styled.div`
 `;
 
 const CardsImg = styled.div`
-  max-width: 300px;
   overflow: hidden;
+  min-width: 100px;
+  min-height: 100px;
+  max-width: 200px;
+  max-height: 200px;
 `;

@@ -1,5 +1,6 @@
 import React from "react";
 import styled from "styled-components";
+import { history } from "../redux/configureStore";
 
 // elements
 import { GlobalStyle } from "../elements";
@@ -9,7 +10,13 @@ const Header = () => {
     <React.Fragment>
       <GlobalStyle />
       <HeaderWrap>
-        <Logo onClick={() => {}}>Mo-ha</Logo>
+        <Logo
+          onClick={() => {
+            history.push("/main");
+          }}
+        >
+          Mo-ha
+        </Logo>
         <Cat>
           <StBtn onClick={() => {}}>서울</StBtn>
           <StBtn onClick={() => {}}>경기</StBtn>

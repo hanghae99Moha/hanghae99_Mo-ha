@@ -4,7 +4,12 @@ import { GlobalStyle } from "./index";
 
 const Button = ({ children, ...props }) => {
   return (
-    <StBtn onClick={props._onClick} {...props}>
+    <StBtn
+      type={props._type}
+      onClick={props._onClick}
+      style={props._style}
+      {...props}
+    >
       <GlobalStyle />
       {children}
     </StBtn>
@@ -24,6 +29,7 @@ const StBtn = styled.button`
       : "3px 5px 10px 10px rgba(0, 0, 0, 0.5)"}
     
   &:hover {
+    cursor: pointer;
     background-color: var(--color-main);
   }
 `;

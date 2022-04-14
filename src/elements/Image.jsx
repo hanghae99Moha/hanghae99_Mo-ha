@@ -22,22 +22,30 @@ const Image = (props) => {
 
 Image.defaultProps = {
   shape: "rectangle",
-  src: "http://via.placeholder.com/400x300",
+  src: "http://via.placeholder.com/400x400",
   size: 36,
   backgroundSize: "cover",
 };
 
 const AspectOutter = styled.div`
-  width: 100%;
-  min-width: 250px;
+  max-width: 400px;
+  min-width: 200px;
+  max-height: 400px;
+  min-height: 200px;
+  margin: auto;
 `;
 
 const AspectInner = styled.div`
   position: relative;
-  padding-top: 75%;
+  padding-top: 100%;
   overflow: hidden;
   background-image: url("${(props) => props.src}");
   background-size: cover;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  justify-items: center;
+  align-items: center;
 `;
 
 export default Image;

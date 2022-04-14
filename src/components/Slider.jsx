@@ -12,7 +12,7 @@ const ResponsiveSlider = () => {
   const Post_list_image = Post_list.map((cur) => cur.imageUrl);
 
   let arrImage = [];
-  for (let i = 0; i < 6; i++) {
+  for (let i = 0; i < 5; i++) {
     let randomNumber = Math.floor(Math.random() * Post_list_image.length);
 
     if (arrImage.indexOf(randomNumber) === -1) {
@@ -25,7 +25,7 @@ const ResponsiveSlider = () => {
   const settings = {
     dots: true,
     infinite: true,
-    slidesToShow: 3,
+    slidesToShow: 4,
     slidesToScroll: 1,
     autoplay: true,
     autoplaySpeed: 2000,
@@ -33,24 +33,13 @@ const ResponsiveSlider = () => {
   return (
     <StSlider>
       <Slider {...settings}>
-        <ImageBox>
-          <Image src={arrImage[0]}></Image>
-        </ImageBox>
-        <ImageBox>
-          <Image src={arrImage[1]}></Image>
-        </ImageBox>
-        <ImageBox>
-          <Image src={arrImage[2]}></Image>
-        </ImageBox>
-        <ImageBox>
-          <Image src={arrImage[3]}></Image>
-        </ImageBox>
-        <ImageBox>
-          <Image src={arrImage[4]}></Image>
-        </ImageBox>
-        <ImageBox>
-          <Image src={arrImage[5]}></Image>
-        </ImageBox>
+        {arrImage.map((cur, idx) => {
+          return (
+            <ImageBox key={idx}>
+              <Image src={[cur]}></Image>
+            </ImageBox>
+          );
+        })}
       </Slider>
     </StSlider>
   );

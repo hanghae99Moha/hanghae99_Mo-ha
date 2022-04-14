@@ -4,6 +4,7 @@ import styled from "styled-components";
 // redux
 import { useDispatch, useSelector } from "react-redux";
 import { actionCreators } from "../redux/modules/post";
+import { history } from "../redux/configureStore";
 
 import Card from "./Card";
 
@@ -20,7 +21,16 @@ const Postlist = (props) => {
     <PostlistWrap>
       <PostlistCardsBox>
         {post_list.map((cur, idx) => {
-          return <Card key={idx} {...cur} idx={idx} />;
+          return (
+            <Card
+              key={idx}
+              {...cur}
+              idx={idx}
+              _onClick={() => {
+                history.push(`/detail/${post_list[idx].postId}`);
+              }}
+            />
+          );
         })}
       </PostlistCardsBox>
     </PostlistWrap>
