@@ -93,4 +93,7 @@ https://www.notion.so/10-S-A-147a28176c934f57b91cfeb22da2e982
   ![Untitled](https://user-images.githubusercontent.com/61370487/163331912-e9758246-9535-406b-a369-328d3b9619d8.png)
 - **Troubleshooting**
   - JWT
+  - 이미지 업로드 기능 구현중 React에서 Spring으로 이미지 파일을 보낼 때 formData로 보내주어야 Spirng에서 multipart/formdata로 받을수 있었다.
+  - 위 기능 구현 중 발생한 오류중 하나로, file은 제대로 전송이 되지만 text들은 서버에서 받지 못하는 상황이 발생했었고 방법을 찾아보니 Spring에서
+    데이터를 받을 때, type을 정해주어야 하는 규칙이 있었다.
 - **개인 회고**
