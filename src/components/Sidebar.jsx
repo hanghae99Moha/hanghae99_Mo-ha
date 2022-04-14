@@ -1,6 +1,6 @@
 import styled from "styled-components";
 import React, { useState, useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { actionCreators as userActions } from "../redux/modules/user";
 import { useHistory } from "react-router-dom/cjs/react-router-dom.min";
 
@@ -15,14 +15,15 @@ import { Button, Grid } from "../elements";
 import { BsPencil, BsFileEarmarkPost } from "react-icons/bs";
 import { GoHome } from "react-icons/go";
 
-const Sidebar = (props) => {
+const Sidebar = () => {
   const history = useHistory();
   const dispatch = useDispatch();
+  const [nickname, setNickname] = useState({
+    nickname: "르탄이",
+  });
   const logout = () => {
     dispatch(userActions.logoutAction({ userId: "" }));
   };
-
-  const _nickname = localStorage.getItem("nickname");
 
   return (
     <React.Fragment>
@@ -47,7 +48,7 @@ const Sidebar = (props) => {
         </Grid>
         <Grid>
           <Greeting>
-            {_nickname}님,
+            {nickname.nickname}님,
             <br /> 안녕하세요.
           </Greeting>
         </Grid>

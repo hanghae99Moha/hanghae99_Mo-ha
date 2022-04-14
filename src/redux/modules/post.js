@@ -32,7 +32,7 @@ const getPostMD = () => {
   return async function (dispatch, getState, { history }) {
     // const token = localStorage.getItem('token');
     try {
-      const { data } = await api.get("api/posts");
+      const { data } = await api.get("/posts");
       dispatch(getPost(data));
     } catch (error) {
       alert("데이터를 불러오지 못했습니다");
