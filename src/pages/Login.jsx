@@ -6,7 +6,6 @@ import LogoImg from "../assets/Logo.png";
 import { useDispatch } from "react-redux";
 import { actionCreators as userActions } from "../redux/modules/user";
 import { useHistory } from "react-router-dom/cjs/react-router-dom.min";
-import { getCookie, setCookie, deleteCookie } from "../shared/Cookie";
 
 const Login = (props) => {
   const history = useHistory();
@@ -59,7 +58,6 @@ const Login = (props) => {
           <span>
             <StBtn
               onClick={() => {
-                localStorage.setItem("sss", "ssss");
                 history.push("/signup");
               }}
             >
