@@ -112,6 +112,7 @@ const deletePostDB = (payload) => {
         (p) => parseInt(p.payload) === parseInt(payload)
       );
       dispatch(deletePost(post_index));
+      dispatch(getPostMD());
     } catch {
       window.alert("포스트 삭제 성공 !!!");
     }
