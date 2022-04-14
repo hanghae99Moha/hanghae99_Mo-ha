@@ -9,7 +9,7 @@ import ResponsiveSlider from "../components/Slider";
 const Main = (props) => {
   const is_login = useSelector((state) => state.user.is_login);
 
-  if (is_login) {
+  if (!is_login) {
     return <StMain>Main</StMain>;
   }
   return (

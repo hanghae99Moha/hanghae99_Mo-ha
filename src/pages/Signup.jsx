@@ -12,6 +12,7 @@ const Signup = (props) => {
     userId: "",
     password: "",
     nickname: "",
+    passwordConfirm: "",
   });
   const [valid, setValid] = useState(false);
   const [submitted, setSubmitted] = useState(false);
@@ -24,6 +25,9 @@ const Signup = (props) => {
   const Pwhandle = (e) => {
     setValues({ ...values, password: e.target.value });
   };
+  const PwConfirmhandle = (e) => {
+    setValues({ ...values, passwordConfirm: e.target.value });
+  };
   const Nicknamehandle = (e) => {
     setValues({ ...values, nickname: e.target.value });
   };
@@ -33,15 +37,25 @@ const Signup = (props) => {
   };
   const Submithandle = (e) => {
     // e.preventDefault();
-    if (values.userId && values.password && values.nickname) {
+    if (
+      values.userId &&
+      values.password &&
+      values.nickname &&
+      values.passwordConfirm
+    ) {
       setValid(true);
     }
     if (
       values.userId === "" ||
       values.password === "" ||
-      values.nickname === ""
+      values.nickname === "" ||
+      values.passwordConfirm === ""
     ) {
       window.alert("아이디, 패스워드, 닉네임을 모두 입력해주세요!!😊");
+      return;
+    }
+    if (values.password !== values.passwordConfirm) {
+      window.alert("앗! 비밀번호가 일치하지 않아요! 😅");
       return;
     }
     if (values.userId.search(/[`~!@@#$%^&*|₩₩₩'₩";:₩/?]/gi) !== -1) {
@@ -57,22 +71,53 @@ const Signup = (props) => {
   return (
     <Contain>
       <Logo />
-      <StinputBox>
+      <form
+        onSubmit={(event) => {
+          event.preventDefault();
+        }}
+      >
         <Stid>
           <Stinput
             placeholder="아이디"
             name="userId"
-            minLength="6"
+            minlength="6"
             value={values.userId}
             type="text"
             onChange={Idhandle}
           />
+          {submitted && !values.userId ? (
+            <p>
+              {" "}
+              <p style={{ color: "#ff2667" }}>6글자 이상 입력해주세요!!</p>
+            </p>
+          ) : null}
           <StButton onChange={Submithandle}>중복 확인</StButton>
         </Stid>
         <Stinput placeholder="닉네임" onChange={Nicknamehandle} />
-        <Stinput placeholder="비밀번호" type="Password" onChange={Pwhandle} />
-        {/* <Stinput placeholder="비밀번호 확인" type="Password" /> */}
-      </StinputBox>
+        <Stinput
+          placeholder="비밀번호"
+          type="Password"
+          onChange={Pwhandle}
+          value={values.password}
+          name="password"
+          minlength="6"
+        />
+        <Stinput
+          onChange={PwConfirmhandle}
+          value={values.passwordConfirm}
+          placeholder="비밀번호 확인"
+          type="Password"
+          name="passwordConfirm"
+          minlength="6"
+        />
+        {submitted && !values.passwordConfirm ? (
+          <p>
+            <span style={{ color: "#ff2667" }}>
+              6글자 이상 입력해주세요😅❕
+            </span>
+          </p>
+        ) : null}
+      </form>
       <Stsublogin type="submit" onClick={Submithandle}>
         회원 가입
       </Stsublogin>
@@ -103,8 +148,6 @@ const Logo = styled.div`
   margin: auto;
   margin-bottom: 80px;
 `;
-
-const StinputBox = styled.div``;
 
 const Stid = styled.div`
   display: flex;
